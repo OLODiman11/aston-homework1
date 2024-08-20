@@ -1,7 +1,12 @@
 package olodiman11.aston.homework1;
 
+import olodiman11.aston.homework1.characters.Character;
 import olodiman11.aston.homework1.characters.enemies.*;
 import olodiman11.aston.homework1.characters.heroes.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class BattleGround {
     public static void main(String[] args) {
@@ -13,40 +18,22 @@ public class BattleGround {
         Vampire vampire = new Vampire(150, 20);
         Snake snake = new Snake(70, 5, 0.8);
 
-        warrior.attack(vampire);
-        System.out.println();
-        archer.attack(vampire);
-        System.out.println();
-        mage.attack(snake);
-        System.out.println();
-        skeleton.attack(archer);
-        System.out.println();
-        vampire.attack(archer);
-        System.out.println();
-        snake.attack(warrior);
-        System.out.println();
-        warrior.attack(skeleton);
-        System.out.println();
-        archer.attack(vampire);
-        System.out.println();
-        mage.attack(snake);
-        System.out.println();
-        skeleton.attack(warrior);
-        System.out.println();
-        vampire.attack(archer);
-        System.out.println();
-        snake.attack(mage);
-        System.out.println();
-        warrior.attack(skeleton);
-        System.out.println();
-        archer.attack(vampire);
-        System.out.println();
-        mage.attack(snake);
-        System.out.println();
-        skeleton.attack(warrior);
-        System.out.println();
-        vampire.attack(archer);
-        System.out.println();
-        snake.attack(mage);
+        List<Hero> heroes = new ArrayList<Hero>();
+        List<Enemy> enemies = new ArrayList<Enemy>();
+        heroes.add(warrior);
+        heroes.add(archer);
+        heroes.add(mage);
+        enemies.add(skeleton);
+        enemies.add(vampire);
+        enemies.add(snake);
+
+        // Math min чтобы избежать выхода за пределы массива.
+        for (int i = 0; i < Math.min(heroes.size(),enemies.size()); i++) {
+            heroes.get(i).attack(enemies.get(i));
+            System.out.println();
+            enemies.get(i).attack(heroes.get(i));
+            System.out.println();
+        }
+
     }
 }
